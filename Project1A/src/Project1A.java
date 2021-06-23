@@ -35,7 +35,7 @@ public class Project1A {
 	  // function to get the number user chose and do the math
 	  public static int getMedNumber(){
 	    int userOption=0; 
-	      int userCalcInput = 0;
+	      double userCalcInput = 0;
 	      
 	      options();
 	      
@@ -48,17 +48,17 @@ public class Project1A {
 	    	  }
 	    	  if(userOption == 1) {
 	    		  System.out.println("You picked 1");
-	    		  userCalcInput = getInteger("How many cups?:");
+	    		  userCalcInput = getDouble("How many cups?:");
 	    		  System.out.println("Total Teaspoons: " + userCalcInput * 48);
 	    	  }
 	    	  if(userOption == 2) {
 	    		  System.out.println("You picked 2");
-	    		  userCalcInput = getInteger("How many miles?:");
+	    		  userCalcInput = getDouble("How many miles?:");
 	    		  System.out.println("Total Kilometers: " + userCalcInput * 1.609);
 	    	  }
 	    	  if(userOption == 3) {
 	    		  System.out.println("You picked 3");
-	    		  userCalcInput = getInteger("How many US Gallons?:");
+	    		  userCalcInput = getDouble("How many US Gallons?:");
 	    		  System.out.println("Imperial Gallons: " + userCalcInput / 1.201);
 	    	  }
 	    	  if(userOption == 4) {
@@ -156,5 +156,22 @@ public class Project1A {
 	      return false;
 	    }
 	  }
+	  
+	  public static double getDouble(String prompt){
+		   System.out.println(prompt);
+		   String number = keyboard.nextLine();
+		   
+		   while(!isDouble(number)){
+		     System.out.println("Sorry, '" +number+"' is not a double.");
+		     System.out.println(prompt);
+		     number = keyboard.nextLine();    
+		   }
+		   return Double.valueOf(number);
+		 }
+	  
+	  private static boolean isDouble(String testCase) {
+		  try {Double.parseDouble(testCase); return true;}
+		  catch(Exception e) {return false;}
+		 } 
 	//*********************************************************************************************************************
 	}
