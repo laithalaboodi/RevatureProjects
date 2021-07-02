@@ -15,7 +15,7 @@ public class RoomManger {
    Room[] rooms;
    //Init method is a predefined method to initialize an object after its creation
    public void init() {
-	   							
+	   //I should make the descriptions into globle constants to clean the code up 
        Room livingRoom = new Room("Living Room", "Big Living Room",
                "The living room is big and you can see 4 exits\n"
                        + "To the east you can see a random dooor that you dont know where it will lead to\n"
@@ -36,6 +36,7 @@ public class RoomManger {
        Room storage = new Room("The Storage", " an storage door",
                "This is a storage and its empty.\n");
        
+       //getDirection is from Room class
        List<String> directions = livingRoom.getDirections();
        rooms = new Room[directions.size()];
        

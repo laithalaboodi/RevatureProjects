@@ -6,13 +6,15 @@ public abstract class Fixture {
 	   private String name;
 	   private String shortDescription;
 	   private String longDescription;
-
+	   
+	   //constructor
 	   public Fixture(String name, String shortDescription, String longDescription) {
 	       this.name = name;
 	       this.shortDescription = shortDescription;
 	       this.longDescription = longDescription;
 	   }
-
+	   
+	   //getters
 	   public String getName() {
 	       return name;
 	   }
@@ -24,5 +26,6 @@ public abstract class Fixture {
 	   public String getLongDescription() {
 	       return longDescription;
 	   }
-
+	   
+	   //didnt need setters
 	}

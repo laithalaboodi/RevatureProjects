@@ -6,6 +6,8 @@ import java.util.List;
 /*
  * This class represents a room in the house. It will extend fixtures.Fixture, and so will inherit the descriptive properties from Fixture. 
 */
+
+//inherited from Fixture which is Abstract class
 public class Room extends Fixture {
    private Room[] exits;
    //used list for the directions 
@@ -15,7 +17,7 @@ public class Room extends Fixture {
        super(name, shortDescription, longDescription);
        this.exits = new Room[directions.size()];
    }
-
+   
    public Room[] getExits() {
        return exits;
    }
@@ -28,12 +30,13 @@ public class Room extends Fixture {
    public List<String> getDirections() {
        return directions;
    }
-
+   //setter
    public void setExits(Room[] exits) {
        this.exits = exits;
    }
 
    //using toString to print out the prompts 
+   //example of polymorphism 
    @Override
    public String toString() {
        String exits = "";
@@ -41,7 +44,7 @@ public class Room extends Fixture {
            if(getExit(direction)!=null)
            exits += (direction + "\t=> " + getExit(direction).getShortDescription() + "\n");
        }
-       return this.getName() + "\n \n" + this.getLongDescription() + "\n \n" + "Exits:\n" + exits;
+       return this.getName() + "\n\n" + this.getLongDescription() + "\n\n" + "Exits:\n" + exits;
    }
 
 }

@@ -11,11 +11,11 @@ public class Player {
        super();
        this.currentRoom = currentRoom;
    }
-
+   //getter 
    public Room getCurrentRoom() {
        return currentRoom;
    }
-
+   //setter
    public void setCurrentRoom(Room currentRoom) {
        this.currentRoom = currentRoom;
    }
