@@ -19,18 +19,16 @@ public class RoomManger {
        Room livingRoom = new Room("Living Room", "Big Living Room",
                "The living room is big and you can see 4 exits\n"
                        + "To the east you can see a random dooor that you dont know where it will lead to\n"
-                       + "to the west you can go to the storage and to north you can go to the library.\n" +"To the south there is small kitchen.");
-       List<String> directions = livingRoom.getDrections();
+                       + "to the west you can go to the storage and to north you can go to the study room.\n" +"To the south there is small kitchen.");
+       List<String> directions = livingRoom.getDirections();
        rooms = new Room[directions.size()];
+    
        
-       //Here I am starting in the livingRoom   
-       this.startingRoom = livingRoom;
-       
-       Room kitchen = new Room("The Kitchen", "small kitchen",
+       Room kitchen = new Room("The Kitchen", " small kitchen",
                "The kitchen have a dining table. The living room is open to the North.\n"
                        + "to the west there is a empty storage");
        
-       Room studyRoom = new Room("The Study Room", "a cozy study room   ",
+       Room studyRoom = new Room("The Study Room", " a cozy study room   ",
                "This room has a table and white boards for study. \n"
                        + "To the west there is a storage and to\n"
                        + "the south there is the big living room.");
@@ -40,6 +38,10 @@ public class RoomManger {
        
        Room storage = new Room("The Storage", " an storage door",
                "This is a storage and its empty.\n");
+       
+       
+       //Here I am starting in the livingRoom   
+       this.startingRoom = livingRoom;
 
        //logic for starting room
        rooms[directions.indexOf("south")] = kitchen;

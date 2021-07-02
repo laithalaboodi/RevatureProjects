@@ -20,7 +20,7 @@ public class Main {
 
    //current room and printing the toString here 
    public static void printRoom(Player player) {
-       System.out.println(player.getCurrentRoom().toString());
+       System.out.println("\n"+player.getCurrentRoom().toString());
    }
    //getting user input 
    public static String[] collectInput() {

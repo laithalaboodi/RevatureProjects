@@ -8,7 +8,7 @@ import java.util.List;
 */
 public class Room extends Fixture {
    private Room[] exits;
-   private List<String> directions = Arrays.asList("east", "west", "north", "south");
+   private List<String> directions = Arrays.asList("north", "south", "east", "west");
 
    public Room(String name, String shortDescription, String longDescription) {
        super(name, shortDescription, longDescription);
@@ -24,7 +24,7 @@ public class Room extends Fixture {
    }
   
 
-   public List<String> getDrections() {
+   public List<String> getDirections() {
        return directions;
    }
 
@@ -38,9 +38,9 @@ public class Room extends Fixture {
        String exits = "";
        for (String direction : this.directions) {
            if(getExit(direction)!=null)
-           exits += (direction + ": " + getExit(direction).getShortDescription() + "\n");
+           exits += (direction + "\t=> " + getExit(direction).getShortDescription() + "\n");
        }
-       return this.getName() + "\n\n" + this.getLongDescription() + "\n\n" + "Exits:\n" + exits;
+       return this.getName() + "\n \n" + this.getLongDescription() + "\n \n" + "Exits:\n" + exits;
    }
 
 }
