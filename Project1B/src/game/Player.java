@@ -2,7 +2,7 @@ package game;
 
 import fixtures.Room;
 
-//This class represents the player moving through these rooms.
+//This class represents the player moving through rooms.
 
 public class Player {
    private Room currentRoom;

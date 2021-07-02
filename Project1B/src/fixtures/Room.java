@@ -4,10 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 
 /*
- * This class represents a room in the house. It will extend fixtures.Fixture, and so will inherit the descriptive properties. 
+ * This class represents a room in the house. It will extend fixtures.Fixture, and so will inherit the descriptive properties from Fixture. 
 */
 public class Room extends Fixture {
    private Room[] exits;
+   //used list for the directions 
    private List<String> directions = Arrays.asList("north", "south", "east", "west");
 
    public Room(String name, String shortDescription, String longDescription) {

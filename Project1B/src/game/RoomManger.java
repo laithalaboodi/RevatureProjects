@@ -13,16 +13,13 @@ import fixtures.Room;
 public class RoomManger {
    Room startingRoom;
    Room[] rooms;
-
+   //Init method is a predefined method to initialize an object after its creation
    public void init() {
 	   							
        Room livingRoom = new Room("Living Room", "Big Living Room",
                "The living room is big and you can see 4 exits\n"
                        + "To the east you can see a random dooor that you dont know where it will lead to\n"
                        + "to the west you can go to the storage and to north you can go to the study room.\n" +"To the south there is small kitchen.");
-       List<String> directions = livingRoom.getDirections();
-       rooms = new Room[directions.size()];
-    
        
        Room kitchen = new Room("The Kitchen", " small kitchen",
                "The kitchen have a dining table. The living room is open to the North.\n"
@@ -39,6 +36,8 @@ public class RoomManger {
        Room storage = new Room("The Storage", " an storage door",
                "This is a storage and its empty.\n");
        
+       List<String> directions = livingRoom.getDirections();
+       rooms = new Room[directions.size()];
        
        //Here I am starting in the livingRoom   
        this.startingRoom = livingRoom;
