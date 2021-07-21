@@ -21,8 +21,7 @@ import com.revature.utilities.ConnectionUtililty;
 public class UserPostgresDAO implements UsersDAO {
 	
 	private ConnectionUtililty cf = ConnectionUtililty.getConnectionFactory();
-	
-    //create new customer's account
+
 	public Users createCustomerAccount(Users user, double balance) {
 		// TODO Auto-generated method stub
 		
@@ -372,7 +371,7 @@ public class UserPostgresDAO implements UsersDAO {
 		} finally {
 			try {
 				cf.releaseConnection(conn);
-				//conn.close();
+				
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
