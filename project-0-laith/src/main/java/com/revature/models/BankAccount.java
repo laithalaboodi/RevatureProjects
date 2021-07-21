@@ -2,33 +2,26 @@ package com.revature.models;
 
 public class BankAccount {
 		
-	    private int customerId;
-	    private int bankId;
-	    private String mailing_address;
+	    private int customerID;
+	    private int bankID;
 	    private boolean pendingTransaction;
-	    private BankingStatus bankingStatus;
+	    private BankStatus bankingStatus;
 	    
-	    
-	    		
+	 	    		
 		public int getBankId() {
-			return bankId;
+			return bankID;
 		}
 		public void setBankId(int bankId) {
-			this.bankId = bankId;
+			this.bankID = bankId;
 		}
 		public int getCustomerId() {
-			return customerId;
+			return customerID;
 		}
 		public void setCustomerId(int customerId) {
-			this.customerId = customerId;
+			this.customerID = customerId;
 		}
 
-	    public String getMailing_address() {
-			return mailing_address;
-		}
-		public void setMailing_address(String mailing_address) {
-			this.mailing_address = mailing_address;
-		}
+
 		public boolean isPendingTransaction() {
 			return pendingTransaction;
 		}
@@ -39,7 +32,7 @@ public class BankAccount {
 			return bankingStatus.toString();
 		}
 		public void setBankingStatus(String bankingStatus) {
-			for(BankingStatus bs : BankingStatus.values()) {
+			for(BankStatus bs : BankStatus.values()) {
 				if(bs.toString().equals(bankingStatus)) {
 					this.bankingStatus = bs; 
 				}

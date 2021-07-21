@@ -10,7 +10,7 @@ import java.util.List;
 import com.revature.exception.InternalException;
 import com.revature.exception.UserNotFound;
 import com.revature.models.BankAccount;
-import com.revature.models.BankingStatus;
+import com.revature.models.BankStatus;
 import com.revature.models.CheckingAccount;
 import com.revature.models.Customer;
 import com.revature.models.Employee;
