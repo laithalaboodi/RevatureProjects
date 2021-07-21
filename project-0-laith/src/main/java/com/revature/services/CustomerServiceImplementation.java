@@ -18,21 +18,21 @@ import com.revature.models.Users;
 public class CustomerServiceImplementation implements CustService,UserService {
     
     
-    private UserPostgresDAO upd;
-    private AccountDAO bad;
-    private TransactionPosgresDAO tpd;
+    private UserPostgresDAO userPostgreDao;
+    private AccountDAO bankAccountDao;
+    private TransactionPosgresDAO transactionPosDao;
 	    
-	public CustomerServiceImplementation(UserPostgresDAO upd,AccountDAO bad,TransactionPosgresDAO tpd) {
+	public CustomerServiceImplementation(UserPostgresDAO userPostgreDao,AccountDAO bankAccountDao,TransactionPosgresDAO transactionPosDao) {
 		super();
-		this.upd = upd;
-		this.bad = bad;
-		this.tpd = tpd;
+		this.userPostgreDao = userPostgreDao;
+		this.bankAccountDao = bankAccountDao;
+		this.transactionPosDao = transactionPosDao;
 	}
 
 	public List<Object> viewCustomerInfo(Users customer) {
 		List<Object> listInfo;
 		try {
-			listInfo = upd.findCustomerInfoByEmail(customer);	
+			listInfo = userPostgreDao.findCustomerInfoByEmail(customer);	
 			if(listInfo.size() != 0) {
 				return listInfo;
 			}
@@ -46,7 +46,7 @@ public class CustomerServiceImplementation implements CustService,UserService {
 
 
 	public void applyNewAccountWithBalance(Users customer, double balance) {
-		  Users user = upd.createCustomerAccount(customer, balance);
+		  Users user = userPostgreDao.createCustomerAccount(customer, balance);
 		  if(user!= null) {
 			   System.out.println("Welcome, "+ user.getFirstName()+" "+user.getLastName());
 			   System.out.println("Thank you for registering new account! Your account is being reviewed!");
@@ -66,7 +66,7 @@ public class CustomerServiceImplementation implements CustService,UserService {
 			((SavingAccount)existingAccount).setBalance(amount);
 		}
 		Driver.laithLogger.info("Banking Account with Id: "+bankId+" just got deposit: "+amount+"$!");
-		return bad.updateBalance(bankId ,existingAccount);
+		return bankAccountDao.updateBalance(bankId ,existingAccount);
 		
 	}
 
@@ -77,7 +77,7 @@ public class CustomerServiceImplementation implements CustService,UserService {
 		} else if (existingAccount instanceof SavingAccount){
 			((SavingAccount)existingAccount).withDraw(amount);
 		}
-		return bad.updateBalance(bankId ,existingAccount);
+		return bankAccountDao.updateBalance(bankId ,existingAccount);
 	}
 	
 	
@@ -92,25 +92,25 @@ public class CustomerServiceImplementation implements CustService,UserService {
 		}
 		t.setSenderId(userId);
 		t.setTransactionAmount(amount);
-		Transactions newTransaction = tpd.saveOne(t);
+		Transactions newTransaction = transactionPosDao.saveOne(t);
 		Driver.laithLogger.info("User with Id: "+userId+"just send "+amount+"$!");
 		return newTransaction != null ? true : false;
 	}
 
 	public boolean acceptMoneyTransfer(Transactions transaction) {
 		
-		return tpd.updateOne(transaction);
+		return transactionPosDao.updateOne(transaction);
 	}
 	
 	public List<Transactions> findRepicient(int repicientId) {
 		
-		return tpd.findRepicient(repicientId);
+		return transactionPosDao.findRepicient(repicientId);
 
 	}
     
 	
 	public Users userLogIn(String email, String password, boolean isCustomer) throws UserNotFound, InternalException, SQLException {
-		Users user = upd.findOne(email, password, isCustomer);	
+		Users user = userPostgreDao.findOne(email, password, isCustomer);	
 		Driver.laithLogger.info(user.getFirstName()+" "+user.getLastName()+" logged in!");
 		if(user!= null) {
 		   
