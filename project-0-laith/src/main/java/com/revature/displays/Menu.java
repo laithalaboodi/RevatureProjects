@@ -278,12 +278,7 @@ public class Menu implements DisplayInterface {
 		   }
 	}
 	
-	
-	public void viewLogOfTransaction() {
 		
-	}
-	
-	
 	public void manageCustomerAccount(Users user) {
 		while(true)  {
 			List<Object> list = customerServImp.viewCustomerInfo(user);
