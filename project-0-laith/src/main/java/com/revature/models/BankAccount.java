@@ -32,9 +32,9 @@ public class BankAccount {
 			return bankingStatus.toString();
 		}
 		public void setBankingStatus(String bankingStatus) {
-			for(BankStatus bs : BankStatus.values()) {
-				if(bs.toString().equals(bankingStatus)) {
-					this.bankingStatus = bs; 
+			for(BankStatus bankS : BankStatus.values()) {
+				if(bankS.toString().equals(bankingStatus)) {
+					this.bankingStatus = bankS; 
 				}
 			}
 			

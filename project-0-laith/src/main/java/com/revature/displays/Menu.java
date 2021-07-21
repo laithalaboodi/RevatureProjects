@@ -18,14 +18,14 @@ import com.revature.services.EmployeeServiceImplementation;
 
 public class Menu implements DisplayInterface {
 		
-	  private CustomerServiceImplementation csi;
-	  private EmployeeServiceImplementation esi;
+	  private CustomerServiceImplementation customerServImp;
+	  private EmployeeServiceImplementation employeeServImp;
 	  Scanner userInput;
 	 
 	  
-	  public Menu(CustomerServiceImplementation csi, EmployeeServiceImplementation esi) {
-		  this.csi = csi;
-		  this.esi = esi;
+	  public Menu(CustomerServiceImplementation customerServImp, EmployeeServiceImplementation employeeServImp) {
+		  this.customerServImp = customerServImp;
+		  this.employeeServImp = employeeServImp;
 		  userInput = new Scanner(System.in);
 	  }
 	  
@@ -66,7 +66,7 @@ public class Menu implements DisplayInterface {
 	    			email = this.userInput.nextLine();
 	    			System.out.println("Please enter your password: ");
 	    			password = this.userInput.nextLine();
-	    			Users customer = csi.userLogIn(email,password, true);
+	    			Users customer = customerServImp.userLogIn(email,password, true);
 	    			if(customer.isCustomer()) {
 	    				//Enter customer menu
 	    				//this.userIn.nextLine();
@@ -80,7 +80,7 @@ public class Menu implements DisplayInterface {
 	    			email = this.userInput.nextLine();
 	    			System.out.println("Please enter your password: ");
 	    			password = this.userInput.nextLine();
-	    			Users employee = esi.userLogIn(email,password, false);
+	    			Users employee = employeeServImp.userLogIn(email,password, false);
 	    			if(!employee.isCustomer()) {
 	    				 
 	    				manageEmployeeAccount(employee);
@@ -128,13 +128,13 @@ public class Menu implements DisplayInterface {
 			
 			if(option == 1) {
 				
-				this.csi.applyNewAccountWithBalance(customer, 0);
+				this.customerServImp.applyNewAccountWithBalance(customer, 0);
 
 			}
 			else if (option == 2) {
 				System.out.println("Please enter your first deposit: ");
 				double balance = this.userInput.nextDouble();
-				this.csi.applyNewAccountWithBalance(customer, balance);
+				this.customerServImp.applyNewAccountWithBalance(customer, balance);
 			} else {
 				this.userInput.nextLine();
 				System.out.println("Please enter option 1 or 2! \n");
@@ -148,9 +148,6 @@ public class Menu implements DisplayInterface {
 			}
 		}
 		
-		
-		//System.out.println("Please press enter to confirm to back to the main menu!");
-		//this.userIn.nextLine();
 	}
 	
 	
@@ -206,7 +203,7 @@ public class Menu implements DisplayInterface {
 			 System.out.println("This is the list of pending customers:\n");
 			 List<Users> list=null;
 			 try {
-				 list = esi.viewListPendingUser();
+				 list = employeeServImp.viewListPendingUser();
 				 if(list != null) {
 					 System.out.println(list); 
 				 }
@@ -236,7 +233,7 @@ public class Menu implements DisplayInterface {
 							if(u.getUserId()==customerId)
 								  customer = u;
 						}
-						if(esi.approveCustomer(customer))
+						if(employeeServImp.approveCustomer(customer))
 						   System.out.println("Customer is accepted!");
 						else {
 							System.out.println("There is something wrong");
@@ -247,7 +244,7 @@ public class Menu implements DisplayInterface {
 							if(u.getUserId()==customerId)
 								  customer = u;
 						}
-						if(esi.rejectCustomer(customer)) {
+						if(employeeServImp.rejectCustomer(customer)) {
 							System.out.println("Customer is rejected!");
 						} else {
 							System.out.println("There is something wrong");
@@ -275,7 +272,7 @@ public class Menu implements DisplayInterface {
 		   String email = this.userInput.nextLine();
 		   Users customer = new Customer();
 		   customer.setEmail(email);
-		   List<Object> list = esi.viewCustomerInfo(customer);
+		   List<Object> list = employeeServImp.viewCustomerInfo(customer);
 		   if(list.size()>0)
 			   System.out.println(list); 
 		   else {
@@ -291,7 +288,7 @@ public class Menu implements DisplayInterface {
 	
 	public void manageCustomerAccount(Users user) {
 		while(true)  {
-			List<Object> list = csi.viewCustomerInfo(user);
+			List<Object> list = customerServImp.viewCustomerInfo(user);
 			if(list == null) {
 				System.out.println("Welcome "+ user.getFirstName()+" "+user.getLastName()+"!\n"
 						+ "Your account is under review! Please wait!\n");
@@ -354,15 +351,15 @@ public class Menu implements DisplayInterface {
 	}
 	
 	
-	public void viewCustomerAccountDetail(CheckingAccount ca,SavingAccount sa) {
+	public void viewCustomerAccountDetail(CheckingAccount checkingA,SavingAccount savingA) {
 		  this.userInput.nextLine();  
 		  System.out.println("Your accounts:\n");
-		  System.out.println(ca);
-		  System.out.println(sa);
+		  System.out.println(checkingA);
+		  System.out.println(savingA);
 
 	}
 
-	public void depositMoney (BankAccount ba, CheckingAccount ca,SavingAccount sa) {
+	public void depositMoney (BankAccount bankA, CheckingAccount checkingA,SavingAccount savingA) {
 		
 		System.out.println("Which account do you need to deposit?\n"
 				+ "1. Checking Account\n"
@@ -381,18 +378,18 @@ public class Menu implements DisplayInterface {
 		
 		this.userInput.nextLine();
 		if(option ==1) {
-			if(csi.deposit(ba.getBankId(),ca, amount))
+			if(customerServImp.deposit(bankA.getBankId(),checkingA, amount))
 				System.out.println("You successfully deposited to your account!");		
 		} else if(option == 2) {
-			if(csi.deposit(ba.getBankId(), sa, amount))
+			if(customerServImp.deposit(bankA.getBankId(), savingA, amount))
 				System.out.println("You successfully deposited to your account!");
 		} else {
-			System.out.println("Please try again and enter 1 or 2\n");
+			System.out.println("Please try again enter 1 or 2\n");
 		}
 
 	}
 	
-	public void withdrawMoney(BankAccount ba, CheckingAccount ca,SavingAccount sa) {
+	public void withdrawMoney(BankAccount bankA, CheckingAccount checkingA,SavingAccount savingA) {
 		System.out.println("Which account do you need to withdraw?\n"
 				+ "1. Checking Account\n"
 				+ "2. Saving Account\n");
@@ -402,9 +399,9 @@ public class Menu implements DisplayInterface {
 		while(true) {
 			System.out.println("Please enter your amount:\n");
 			amount =this.userInput.nextDouble();
-			if(option == 1 && (amount > ca.getBalance()) || amount <0) {
+			if(option == 1 && (amount > checkingA.getBalance()) || amount <0) {
 				System.out.println("Your amount cannot withdraw amount bigger than the Checking Account balance or less than 0!\n");
-			} else if(option == 2 && (amount > sa.getBalance() || amount < 0)){
+			} else if(option == 2 && (amount > savingA.getBalance() || amount < 0)){
 				System.out.println("Your amount cannot withdraw amount bigger than the Saving Account balance or less than 0!\n");
 			} else {
 				break;
@@ -414,22 +411,22 @@ public class Menu implements DisplayInterface {
 		
 		this.userInput.nextLine();
 		if(option ==1) {
-			if(csi.withdraw(ba.getBankId(),ca, amount))
+			if(customerServImp.withdraw(bankA.getBankId(),checkingA, amount))
 				System.out.println("You successfully withraw from your account!");		
 		} else if(option == 2) {
-			if(csi.withdraw(ba.getBankId(), sa, amount))
+			if(customerServImp.withdraw(bankA.getBankId(), savingA, amount))
 				System.out.println("You successfully withraw from your account!");
 		} else {
-			System.out.println("Please try again and enter 1 or 2\n");
+			System.out.println("Please try again enter 1 or 2\n");
 		}
 
 	}
 	
-	public void viewPendingTransaction(int repicientId,BankAccount ba, CheckingAccount ca,SavingAccount sa) {
+	public void viewPendingTransaction(int repicientId,BankAccount bankA, CheckingAccount checkingA,SavingAccount savingA) {
 		while(true) {
 			System.out.println("These below are your pending transactions: \n");
 			this.userInput.nextLine();
-			List<Transactions> list = csi.findRepicient(repicientId);
+			List<Transactions> list = customerServImp.findRepicient(repicientId);
 			if(list.size()>0) {
 				System.out.println(list);
 				System.out.println("Please enter the transaction ID to accept: ");
@@ -443,19 +440,19 @@ public class Menu implements DisplayInterface {
 						int choice = this.userInput.nextInt();
 						this.userInput.nextLine();
 						if(choice ==1) {
-							if(csi.deposit(ba.getBankId(),ca, t.getTransactionAmount())) {
-								csi.acceptMoneyTransfer(t);
+							if(customerServImp.deposit(bankA.getBankId(),checkingA, t.getTransactionAmount())) {
+								customerServImp.acceptMoneyTransfer(t);
 								System.out.println("You successfully deposited to your account!");	
 							}
 									
 						} else if(choice == 2) {
-							if(csi.deposit(ba.getBankId(), sa, t.getTransactionAmount())) {
-								csi.acceptMoneyTransfer(t);
+							if(customerServImp.deposit(bankA.getBankId(), savingA, t.getTransactionAmount())) {
+								customerServImp.acceptMoneyTransfer(t);
 								System.out.println("You successfully deposited to your account!");
 							}
 								
 						} else {
-							System.out.println("Please try again and enter 1 or 2\n");
+							System.out.println("Please try again enter 1 or 2\n");
 						}
 										
 					}
@@ -476,9 +473,9 @@ public class Menu implements DisplayInterface {
 		
 	}
 	
-	public void sendMoney(int userId,BankAccount ba, CheckingAccount ca,SavingAccount sa) {
+	public void sendMoney(int userId,BankAccount bankA, CheckingAccount checkingA, SavingAccount savingA) {
 		this.userInput.nextLine();   
-		System.out.println("Please enter the email of repicient:\n");
+		System.out.println("Please enter the email of the repicient:\n");
 		   String email = this.userInput.nextLine();
 		   System.out.println("Which account do you need to withdraw for sending money?\n"
 					+ "1. Checking Account\n"
@@ -488,20 +485,20 @@ public class Menu implements DisplayInterface {
 			double amount =this.userInput.nextDouble();
 			this.userInput.nextLine();
 			if(option ==1) {
-				if(csi.withdraw(ba.getBankId(),ca, amount)) {
+				if(customerServImp.withdraw(bankA.getBankId(),checkingA, amount)) {
 					
-					if(csi.transferMoney(email, userId, ca, amount))
-						System.out.println("You successfully transfer the money!");
+					if(customerServImp.transferMoney(email, userId, checkingA, amount))
+						System.out.println("You successfully transfered the money!");
 				}
 							
 			} else if(option == 2) {
-				if(csi.withdraw(ba.getBankId(), sa, amount))
+				if(customerServImp.withdraw(bankA.getBankId(), savingA, amount))
 				{
-					if(csi.transferMoney(email, userId, sa, amount))
-						System.out.println("You successfully transfer the money!");
+					if(customerServImp.transferMoney(email, userId, savingA, amount))
+						System.out.println("You successfully transfered the money!");
 				}
 			} else {
-				System.out.println("Please try again and enter 1 or 2\n");
+				System.out.println("Please try again enter 1 or 2\n");
 			}
 
 		   
