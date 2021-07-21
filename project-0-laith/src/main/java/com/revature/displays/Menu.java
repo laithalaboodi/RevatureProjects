@@ -183,8 +183,6 @@ public class Menu implements DisplayInterface {
 			   
 			   }
 			   
-			   
-			   
 				System.out.println("Would you like to come to the main menu! \n "
 						+ "1. Yes\n 2. No\n ");
 				int type = this.userInput.nextInt();
@@ -432,22 +430,22 @@ public class Menu implements DisplayInterface {
 				System.out.println("Please enter the transaction ID to accept: ");
 				int option = this.userInput.nextInt();
 				System.out.println(option);
-				for(Transactions t : list) {
-					if(t.getTransactionId() == option) {
+				for(Transactions trans : list) {
+					if(trans.getTransactionId() == option) {
 						System.out.println("Which account do you need to deposit?\n"
 								+ "1. Checking Account\n"
 								+ "2. Saving Account\n");
 						int choice = this.userInput.nextInt();
 						this.userInput.nextLine();
 						if(choice ==1) {
-							if(customerServImp.deposit(bankA.getBankId(),checkingA, t.getTransactionAmount())) {
-								customerServImp.acceptMoneyTransfer(t);
+							if(customerServImp.deposit(bankA.getBankId(),checkingA, trans.getTransactionAmount())) {
+								customerServImp.acceptMoneyTransfer(trans);
 								System.out.println("You successfully deposited to your account!");	
 							}
 									
 						} else if(choice == 2) {
-							if(customerServImp.deposit(bankA.getBankId(), savingA, t.getTransactionAmount())) {
-								customerServImp.acceptMoneyTransfer(t);
+							if(customerServImp.deposit(bankA.getBankId(), savingA, trans.getTransactionAmount())) {
+								customerServImp.acceptMoneyTransfer(trans);
 								System.out.println("You successfully deposited to your account!");
 							}
 								
