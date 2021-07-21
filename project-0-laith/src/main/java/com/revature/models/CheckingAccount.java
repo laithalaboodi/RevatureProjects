@@ -39,7 +39,7 @@ public class CheckingAccount extends BankAccount {
 
 	@Override
 	public String toString() {
-		return "Checking Account [accountNumber=" + accountNumber + ", balance=" + balance + "]\n";
+		return "Checking Account account# = " + accountNumber + ", balance = " + balance + "\n";
 	}
 
     

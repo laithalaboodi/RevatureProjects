@@ -17,7 +17,7 @@ import com.revature.models.Users;
 
 public class CustomerServiceImplementation implements CustService,UserService {
     
-    //private UserImplementationDAO uid;
+    
     private UserPostgresDAO upd;
     private AccountDAO bad;
     private TransactionPosgresDAO tpd;
@@ -52,7 +52,7 @@ public class CustomerServiceImplementation implements CustService,UserService {
 			   System.out.println("Thank you for registering new account! Your account is being reviewed!");
 			}
 			else {
-				System.out.println("Creation is not successful!");
+				System.out.println("Creation is unsuccessful!");
 			}
 		  
 
@@ -108,12 +108,12 @@ public class CustomerServiceImplementation implements CustService,UserService {
 
 	}
     
-	//Customer Login
+	
 	public Users userLogIn(String email, String password, boolean isCustomer) throws UserNotFound, InternalException, SQLException {
 		Users user = upd.findOne(email, password, isCustomer);	
 		Driver.laithLogger.info(user.getFirstName()+" "+user.getLastName()+" logged in!");
 		if(user!= null) {
-		   //System.out.println("Welcome, "+ user.getFirstName()+" "+user.getLastName());
+		   
 		   return user;
 		}
 

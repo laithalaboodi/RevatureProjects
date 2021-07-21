@@ -137,15 +137,8 @@ public abstract class Users {
 	
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName
-				+ "]\n";
+		return "User User Id=" + userId + ", Email=" + email + ", First Name=" + firstName + ", Last Name=" + lastName
+				+ "\n";
 	}
-
-	
-
-
-	
-	
-	
 	    
 }

@@ -16,9 +16,6 @@ public class ConnectionUtililty {
 	  private Connection[] conn;
 	  
 	  private ConnectionUtililty(int numsOfConnections) {
-		 // String url = System.getenv("jdbc:postgresql://java-uta-2021.cgwkgluikw7p.us-west-1.rds.amazonaws.com:5432/socaildb");
-		 // String user = System.getenv("socialuser");
-		 // String password = System.getenv("password");
 		  
 		  try {
 			    this.conn = new Connection[numsOfConnections];

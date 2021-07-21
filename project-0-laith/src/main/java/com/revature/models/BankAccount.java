@@ -48,8 +48,8 @@ public class BankAccount {
 		}
 		@Override
 		public String toString() {
-			return "BankingAccount [pendingTransaction=" + pendingTransaction + ", bankingStatus=" + bankingStatus
-					+ "]\n";
+			return "BankingAccount Pending Transaction = " + pendingTransaction + ", Banking Status = " + bankingStatus
+					+ "\n";
 		}
 		
 		

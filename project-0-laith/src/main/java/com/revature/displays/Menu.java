@@ -47,7 +47,7 @@ public class Menu implements DisplayInterface {
 		System.out.println("3. Employee \n");
 		System.out.println("*******************\n");
 		
-		System.out.println("Your choice is: ");
+		System.out.println("Your pick: ");
 	    try {
 	    	
 	    	accountType = this.userInput.nextInt();
@@ -101,10 +101,10 @@ public class Menu implements DisplayInterface {
 		while(true) {
 			String email,password,firstName,lastName;	
 			System.out.println("Choose the best options for you: \n");
-			System.out.println("1. Register new account without initial deposit\n"
+			System.out.println("1. Register new account without deposit\n"
 					+ "2. Register new account with deposit \n"
 					+ "3. Return to main menu");
-			System.out.println("Your choice is: ");
+			System.out.println("Your pick: ");
 			int option = this.userInput.nextInt();
 			if(option ==3)
 				break;
@@ -159,12 +159,12 @@ public class Menu implements DisplayInterface {
 	public void manageEmployeeAccount(Users employee) {
 		   while(true) {
 			   System.out.println("Please choose the option below!\n");
-			   System.out.println("1. View pending customer account\n"
+			   System.out.println("1. View pending customer\n"
 			   		+ "2. View a customer's bank account\n"
 			   		+ "3. View a log of all transactions\n"
 			   		+ "4. Return to the main menu\n");
 			  
-				System.out.println("Your choice is: ");
+				System.out.println("Your pick: ");
 				int option = this.userInput.nextInt();
 			   if(option == 4)
 				   break;
@@ -315,13 +315,13 @@ public class Menu implements DisplayInterface {
 			System.out.println("Welcome "+ user.getFirstName()+" "+user.getLastName()+"!\n");
 			
 			System.out.println("Select the options below for your account:\n");
-			System.out.println("1. View your account details\n"
+			System.out.println("1. View your account\n"
 					         + "2. Deposit money to your account\n"
 					         + "3. Withdraw money from your account\n"
 					         + "4. View pending transaction\n"
 					         + "5. Send money to another account\n"
-					         + "6. Return to the main menu\n");
-			System.out.println("Your choice is: ");
+					         + "6. Return to main menu\n");
+			System.out.println("Your pick: ");
 			int option = this.userInput.nextInt();
 			switch(option) {
 			    case 1: 
@@ -382,10 +382,10 @@ public class Menu implements DisplayInterface {
 		this.userInput.nextLine();
 		if(option ==1) {
 			if(csi.deposit(ba.getBankId(),ca, amount))
-				System.out.println("You successfully deposit to your account!");		
+				System.out.println("You successfully deposited to your account!");		
 		} else if(option == 2) {
 			if(csi.deposit(ba.getBankId(), sa, amount))
-				System.out.println("You successfully deposit to your account!");
+				System.out.println("You successfully deposited to your account!");
 		} else {
 			System.out.println("Please try again and enter 1 or 2\n");
 		}
@@ -445,13 +445,13 @@ public class Menu implements DisplayInterface {
 						if(choice ==1) {
 							if(csi.deposit(ba.getBankId(),ca, t.getTransactionAmount())) {
 								csi.acceptMoneyTransfer(t);
-								System.out.println("You successfully deposit to your account!");	
+								System.out.println("You successfully deposited to your account!");	
 							}
 									
 						} else if(choice == 2) {
 							if(csi.deposit(ba.getBankId(), sa, t.getTransactionAmount())) {
 								csi.acceptMoneyTransfer(t);
-								System.out.println("You successfully deposit to your account!");
+								System.out.println("You successfully deposited to your account!");
 							}
 								
 						} else {
