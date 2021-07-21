@@ -31,7 +31,7 @@ SQLException, InputMismatchException {
 		EmployeeServiceImplementation employeesServiceImp = new EmployeeServiceImplementation(userid);
 		Menu userMenu = new Menu(customerServiceImp,employeesServiceImp);
 
-		laithLogger.info("Server is up!");
+		laithLogger.info("Server up!");
 		System.out.println("Welcome To Orgrimmar Bank!\n");
 		while(true) {
 							

@@ -75,7 +75,7 @@ public class TransactionPosgresDAO implements TransactionsDAO {
 		return null;
 	}
 
-    //accept the money transfer
+    
 	public boolean updateOne(Transactions transaction) {
 		Connection conn = cf.getConnection();
 		try {
