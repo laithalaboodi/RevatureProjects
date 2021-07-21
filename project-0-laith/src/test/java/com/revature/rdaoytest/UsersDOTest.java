@@ -27,7 +27,7 @@ public class UsersDOTest {
 	@Test
 	public void logIn() throws UserNotFound, InternalException, SQLException {
 		
-		Users user = userDao.findOne("laith2@gmail.com", "123", true);
+		Users user = userDao.findOne("admin@gmail.com", "123", true);
 		Users userTest = new Customer("laith2@gmail.com", "123","Laith","Al");
 		assertEquals(userTest.getEmail(), user.getEmail());
 		assertEquals(userTest.getFirstName(),user.getFirstName());

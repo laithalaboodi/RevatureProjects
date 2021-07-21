@@ -107,7 +107,7 @@ public class UserPostgresDAO implements UsersDAO {
 				throw new SQLException();
 			}
 			
-			//update user and banking_account table
+
 			String userSql = "update \"user\" set user_status = 'ACTIVE' where user_id =?;";
 			PreparedStatement updateUser = conn.prepareStatement(userSql);
 			updateUser.setInt(1, user.getUserId());
@@ -117,8 +117,7 @@ public class UserPostgresDAO implements UsersDAO {
 			PreparedStatement updateBankingAccount = conn.prepareStatement(bankAccountSql);
 			updateBankingAccount.setInt(1, bankId);
 			updateBankingAccount.executeUpdate();
-			
-			//insert chequing account
+		
 			String insertCheckingAccountSql = "insert into checking_account (bank_id,ca_account_number,ca_balance) \r\n"
 					+ "values(?,?,?);";
 			PreparedStatement insertCheckingAccount = conn.prepareStatement(insertCheckingAccountSql);
@@ -126,7 +125,7 @@ public class UserPostgresDAO implements UsersDAO {
 			insertCheckingAccount.setString(2, ca.getAccountNumber());
 			insertCheckingAccount.setDouble(3, ca.getBalance());
 			insertCheckingAccount.execute();
-			//insert savingaccount
+		
 			String insertSavingAccountSql = "insert into saving_account (bank_id,sa_account_number,sa_balance) \r\n"
 					+ "values(?,?,?);";
 			PreparedStatement insertSavingAccount = conn.prepareStatement(insertSavingAccountSql);
@@ -180,7 +179,7 @@ public class UserPostgresDAO implements UsersDAO {
 				throw new SQLException();
 			}
 			
-			//update user and banking_account table
+
 			String userSql = "update \"user\" set user_status = 'CLOSED' where user_id =?;";
 			PreparedStatement updateUser = conn.prepareStatement(userSql);
 			updateUser.setInt(1, user.getUserId());
