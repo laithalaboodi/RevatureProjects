@@ -49,8 +49,7 @@ public class UserPostgresDAO implements UsersDAO {
 			} else {
 				throw new SQLException();
 			}
-			
-			//do st with banking account
+
 			String bankingSql = "insert into \"banking_account\" (customer_id,pending_transaction,mailing_address,banking_status,initial_deposit)\r\n"
 					+ "values(?,false,'Not Available','PENDING',?);";
 			

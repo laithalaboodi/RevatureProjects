@@ -68,8 +68,6 @@ public class Menu implements DisplayInterface {
 	    			password = this.userInput.nextLine();
 	    			Users customer = customerServImp.userLogIn(email,password, true);
 	    			if(customer.isCustomer()) {
-	    				//Enter customer menu
-	    				//this.userIn.nextLine();
 	    				manageCustomerAccount(customer);
 	    			};
 	    		}
@@ -496,12 +494,5 @@ public class Menu implements DisplayInterface {
 
 		   
 	}
-	
-	
-	  
-	  
-	  
-	  
-	  
-	  
+
 }

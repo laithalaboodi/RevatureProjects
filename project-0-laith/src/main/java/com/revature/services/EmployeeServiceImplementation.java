@@ -83,8 +83,6 @@ public class EmployeeServiceImplementation implements EmployeesService, UserServ
 		return accountNumber.toString();
 	}
 
-
-    //Employee can view customer account using their email
 	public List<Object> viewCustomerInfo(Users customer) {
 		List<Object> listInfo;
 		try {
