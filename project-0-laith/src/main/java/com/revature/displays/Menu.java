@@ -307,8 +307,8 @@ public class Menu implements DisplayInterface {
 					         + "2. Deposit money to your account\n"
 					         + "3. Withdraw money from your account\n"
 					         + "4. View pending transaction\n"
-					         + "5. Send money to another account\n"
-					         + "6. Return to main menu\n");
+					         + "5. Send money\n"
+					         + "6. main menu\n");
 			System.out.println("Your pick: ");
 			int option = this.userInput.nextInt();
 			switch(option) {
